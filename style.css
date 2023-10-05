@@ -44,6 +44,10 @@ button {
     border-radius: 1rem;
 }
 
+button:hover {
+    background-color: #385F71;
+}
+
 .container {
     margin: 50px;
 }

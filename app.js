@@ -24,35 +24,75 @@ const cell7 = cell6.nextElementSibling;
 const cell8 = cell7.nextElementSibling;
 
 // Keep track of the current player (in a variable) and assign it to x or o
-const player1 = "Player one";
-const player2 = "Player two";
-
-const player1Play = "X";
-const player2Play = "O";
-
+const player1 = "X";
+const player2 = "O";
 const color1 = "#385F71";
 const color2 = "#D7B377";
 
-const player1Turn = `${player1} turn : click a cell to put an ${player1Play}`;
-const player2Turn = `${player2} turn : click a cell to put an ${player2Play}`;
+const player1Turn = `Player One turn: click a cell to put a X`;
+const player2Turn = `Player Two turn: click a cell to put a O`;
 
-let winner;
-let currentPlayer;
+let isPlayer1 = true;
 
-const gameOver = `Game over ${winner} won the game`;
+const gameOver1 = `Game over, Player One won the game !!
+  Click the reset button to play again :)`;
+const gameOver2 = `Game over, Player Two won the game !!
+  Click the reset button to play again :)`;
 
 // Keep track if the game is running or over
-let msg = document.querySelector(".message");
+const msg = document.querySelector(".message");
 msg.innerText = player1Turn;
+
+function whoPlays(e) {
+  if (isPlayer1 == true) {
+    e.style.color = color1;
+    turn(player1, e);
+    isPlayer1 = false;
+  } else if (isPlayer1 == false) {
+    e.style.color = color2;
+    turn(player2, e);
+    isPlayer1 = true;
+  }
+  // if game is over, no one plays mais on annonce le winner
+  // restart on supprime dans l'array et on recommence avec player1
+}
+
+function turn(play, e) {
+  // La cell est vide on met un xo
+  if ((e.innerText = "")) {
+    e.innerText = play;
+    playedCells[num] = play;
+    // On check si y'a une combinaison gagnante xo
+    win();
+  } else {
+    if (isPlayer1 == true) {
+      msg.innerText = `Please select a valid cell Player One`;
+    } else {
+      msg.innerText = `Please select a valid cell Player Two`;
+    }
+  }
+}
+
+function win() {
+  winCombinations.forEach((item) => {
+    if (
+      playedCells[item[0]] != "" &&
+      playedCells[item[0]] == playedCells[item[1]] &&
+      playedCells[item[0]] == playedCells[item[2]]
+    ) {
+      if (playedCells[item[0]] == player1) {
+        msg.innerText = gameOver1;
+      } else {
+        msg.innerText = gameOver2;
+      }
+      return msg.innerText;
+    }
+  });
+}
 
 // In the initialization of the game, add an event listener to each cell.
 
-board.addEventListener("click", (e) => {
-  // si l'item dans l'array est vide, on met un X ou un O en fonction du joueur actuel
-  // Si c'est pas vide, on dit qu'il faut jouer ailleurs
-  // Si c'était vide et qu'on a complété, on change le message et c'est à l'autre joueur de jouer
-  // mais avant on check si c'est une combinaison gagnante
-});
+board.addEventListener("click", (e) => {});
 
 // cell 0
 cell0.addEventListener("click", (e) => {});
@@ -83,16 +123,3 @@ cell8.addEventListener("click", (e) => {});
 
 // When a cell is clicked, fill the playedCells with the current player in the correct position
 // Check if there is a win comparing the winCombinations array to the playedCells
-
-function whoPlays() {
-  if (currentPlayer == player1) {
-    // fill with X
-    // edit message with player1Turn
-  }
-  if (currentPlayer == player2) {
-    // fill with O
-    // edit message with player2Turn
-  }
-  // if game is over, no one plays mais on annonce le winner
-  // restart on supprime dans l'array et on recommence avec player1
-}

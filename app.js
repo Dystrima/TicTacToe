@@ -47,7 +47,12 @@ msg.innerText = player1Turn;
 
 // In the initialization of the game, add an event listener to each cell.
 
-board.addEventListener("click", (e) => {});
+board.addEventListener("click", (e) => {
+  // si l'item dans l'array est vide, on met un X ou un O en fonction du joueur actuel
+  // Si c'est pas vide, on dit qu'il faut jouer ailleurs
+  // Si c'était vide et qu'on a complété, on change le message et c'est à l'autre joueur de jouer
+  // mais avant on check si c'est une combinaison gagnante
+});
 
 // cell 0
 cell0.addEventListener("click", (e) => {});
@@ -78,3 +83,16 @@ cell8.addEventListener("click", (e) => {});
 
 // When a cell is clicked, fill the playedCells with the current player in the correct position
 // Check if there is a win comparing the winCombinations array to the playedCells
+
+function whoPlays() {
+  if (currentPlayer == player1) {
+    // fill with X
+    // edit message with player1Turn
+  }
+  if (currentPlayer == player2) {
+    // fill with O
+    // edit message with player2Turn
+  }
+  // if game is over, no one plays mais on annonce le winner
+  // restart on supprime dans l'array et on recommence avec player1
+}

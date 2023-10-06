@@ -47,10 +47,12 @@ msg.innerText = player1Turn;
 function whoPlays(e, num) {
   if (gameRunning == true) {
     if (isPlayer1 == true) {
+      e.style.color = "#385F71";
       msg.innerText = player2Turn;
       turn(player1, e, num);
       isPlayer1 = false;
     } else if (isPlayer1 == false) {
+      e.style.color = "rgba(215, 179, 119, 1)";
       msg.innerText = player1Turn;
       turn(player2, e, num);
       isPlayer1 = true;
@@ -80,10 +82,12 @@ function win() {
       }
       gameRunning = false;
       return msg.innerText;
-    } /* else if () {
-      msg.innerText = draw;
-    } */
+    }
   });
+}
+
+function test() {
+  console.log("test");
 }
 
 cell0.addEventListener("click", (e) => {

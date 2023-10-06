@@ -11,9 +11,8 @@ const winCombinations = [
   [2, 4, 6],
 ];
 
-// We are going to use the strategy of putting the letters x and o inside the divs in order to play the game.
 const board = document.querySelector(".board");
-// You will need an array of 9 entries playedCells to hold the choices of the players. (you can start with empty strings, and then it will be filled with x and o)
+
 const playedCells = ["", "", "", "", "", "", "", "", ""];
 const cell0 = board.firstElementChild;
 const cell1 = cell0.nextElementSibling;
@@ -25,11 +24,8 @@ const cell6 = cell5.nextElementSibling;
 const cell7 = cell6.nextElementSibling;
 const cell8 = cell7.nextElementSibling;
 
-// Keep track of the current player (in a variable) and assign it to x or o
 const player1 = "X";
 const player2 = "O";
-const color1 = "#385F71";
-const color2 = "#D7B377";
 
 const player1Turn = `Player One turn: click a cell to put a X`;
 const player2Turn = `Player Two turn: click a cell to put a O`;
@@ -40,36 +36,33 @@ const gameOver1 = `Game over, Player One won the game !!
   Click the reset button to play again :)`;
 const gameOver2 = `Game over, Player Two won the game !!
   Click the reset button to play again :)`;
+const draw = `It's a draw !
+Click the reset button to play again :)`;
 
-// Keep track if the game is running or over
+let gameRunning = true;
+
 const msg = document.querySelector(".message");
 msg.innerText = player1Turn;
 
-function whoPlays(e) {
-  if (isPlayer1 == true) {
-    e.style.color = color1;
-    turn(player1, e);
-    isPlayer1 = false;
-  } else if (isPlayer1 == false) {
-    e.style.color = color2;
-    turn(player2, e);
-    isPlayer1 = true;
+function whoPlays(e, num) {
+  if (gameRunning == true) {
+    if (isPlayer1 == true) {
+      msg.innerText = player2Turn;
+      turn(player1, e, num);
+      isPlayer1 = false;
+    } else if (isPlayer1 == false) {
+      msg.innerText = player1Turn;
+      turn(player2, e, num);
+      isPlayer1 = true;
+    }
   }
-  // if game is over, no one plays mais on annonce le winner
-  // restart on supprime dans l'array et on recommence avec player1
 }
 
-function turn(play, e) {
-  if ((e.innerText = "")) {
+function turn(play, e, num) {
+  if (e.innerText == "") {
     e.innerText = play;
     playedCells[num] = play;
     win();
-  } else {
-    if (isPlayer1 == true) {
-      msg.innerText = `Please select a valid cell Player One`;
-    } else {
-      msg.innerText = `Please select a valid cell Player Two`;
-    }
   }
 }
 
@@ -85,44 +78,50 @@ function win() {
       } else {
         msg.innerText = gameOver2;
       }
+      gameRunning = false;
       return msg.innerText;
-    }
+    } /* else if () {
+      msg.innerText = draw;
+    } */
   });
 }
 
-// In the initialization of the game, add an event listener to each cell.
+cell0.addEventListener("click", (e) => {
+  whoPlays(cell0, 0);
+});
 
-board.addEventListener("click", (e) => {});
+cell1.addEventListener("click", (e) => {
+  whoPlays(cell1, 1);
+});
 
-// cell 0
-cell0.addEventListener("click", (e) => {});
+cell2.addEventListener("click", (e) => {
+  whoPlays(cell2, 2);
+});
 
-// cell 1
-cell1.addEventListener("click", (e) => {});
+cell3.addEventListener("click", (e) => {
+  whoPlays(cell3, 3);
+});
 
-// cell 2
-cell2.addEventListener("click", (e) => {});
+cell4.addEventListener("click", (e) => {
+  whoPlays(cell4, 4);
+});
 
-// cell 3
-cell3.addEventListener("click", (e) => {});
+cell5.addEventListener("click", (e) => {
+  whoPlays(cell5, 5);
+});
 
-// cell 4
-cell4.addEventListener("click", (e) => {});
+cell6.addEventListener("click", (e) => {
+  whoPlays(cell6, 6);
+});
 
-// cell 5
-cell5.addEventListener("click", (e) => {});
+cell7.addEventListener("click", (e) => {
+  whoPlays(cell7, 7);
+});
 
-// cell 6
-cell6.addEventListener("click", (e) => {});
+cell8.addEventListener("click", (e) => {
+  whoPlays(cell8, 8);
+});
 
-// cell 7
-cell7.addEventListener("click", (e) => {});
-
-// cell 8
-cell8.addEventListener("click", (e) => {});
-
-// When a cell is clicked, fill the playedCells with the current player in the correct position
-// Check if there is a win comparing the winCombinations array to the playedCells
 restart.addEventListener("click", (e) => {
   playedCells[0] = "";
   playedCells[1] = "";
@@ -134,6 +133,7 @@ restart.addEventListener("click", (e) => {
   playedCells[7] = "";
   playedCells[8] = "";
   isPlayer1 = true;
+  msg.innerText = player1Turn;
   cell0.innerText = "";
   cell1.innerText = "";
   cell2.innerText = "";
@@ -143,4 +143,5 @@ restart.addEventListener("click", (e) => {
   cell6.innerText = "";
   cell7.innerText = "";
   cell8.innerText = "";
+  gameRunning = true;
 });

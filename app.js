@@ -163,7 +163,7 @@ cell8.addEventListener(
 );
 
 restart.addEventListener("click", (e) => {
-  playedCells[0] = "";
+  /* playedCells[0] = "";
   playedCells[1] = "";
   playedCells[2] = "";
   playedCells[3] = "";
@@ -183,5 +183,6 @@ restart.addEventListener("click", (e) => {
   cell6.innerText = "";
   cell7.innerText = "";
   cell8.innerText = "";
-  gameRunning = true;
+  gameRunning = true; */
+  window.location.reload(true);
 });

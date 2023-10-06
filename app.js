@@ -1,3 +1,5 @@
+const restart = document.querySelector(".restart");
+
 const winCombinations = [
   [0, 1, 2],
   [3, 4, 5],
@@ -58,11 +60,9 @@ function whoPlays(e) {
 }
 
 function turn(play, e) {
-  // La cell est vide on met un xo
   if ((e.innerText = "")) {
     e.innerText = play;
     playedCells[num] = play;
-    // On check si y'a une combinaison gagnante xo
     win();
   } else {
     if (isPlayer1 == true) {
@@ -123,3 +123,24 @@ cell8.addEventListener("click", (e) => {});
 
 // When a cell is clicked, fill the playedCells with the current player in the correct position
 // Check if there is a win comparing the winCombinations array to the playedCells
+restart.addEventListener("click", (e) => {
+  playedCells[0] = "";
+  playedCells[1] = "";
+  playedCells[2] = "";
+  playedCells[3] = "";
+  playedCells[4] = "";
+  playedCells[5] = "";
+  playedCells[6] = "";
+  playedCells[7] = "";
+  playedCells[8] = "";
+  isPlayer1 = true;
+  cell0.innerText = "";
+  cell1.innerText = "";
+  cell2.innerText = "";
+  cell3.innerText = "";
+  cell4.innerText = "";
+  cell5.innerText = "";
+  cell6.innerText = "";
+  cell7.innerText = "";
+  cell8.innerText = "";
+});

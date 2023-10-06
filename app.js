@@ -90,41 +90,77 @@ function test() {
   console.log("test");
 }
 
-cell0.addEventListener("click", (e) => {
-  whoPlays(cell0, 0);
-});
+cell0.addEventListener(
+  "click",
+  (e) => {
+    whoPlays(cell0, 0);
+  },
+  { once: true }
+);
 
-cell1.addEventListener("click", (e) => {
-  whoPlays(cell1, 1);
-});
+cell1.addEventListener(
+  "click",
+  (e) => {
+    whoPlays(cell1, 1);
+  },
+  { once: true }
+);
 
-cell2.addEventListener("click", (e) => {
-  whoPlays(cell2, 2);
-});
+cell2.addEventListener(
+  "click",
+  (e) => {
+    whoPlays(cell2, 2);
+  },
+  { once: true }
+);
 
-cell3.addEventListener("click", (e) => {
-  whoPlays(cell3, 3);
-});
+cell3.addEventListener(
+  "click",
+  (e) => {
+    whoPlays(cell3, 3);
+  },
+  { once: true }
+);
 
-cell4.addEventListener("click", (e) => {
-  whoPlays(cell4, 4);
-});
+cell4.addEventListener(
+  "click",
+  (e) => {
+    whoPlays(cell4, 4);
+  },
+  { once: true }
+);
 
-cell5.addEventListener("click", (e) => {
-  whoPlays(cell5, 5);
-});
+cell5.addEventListener(
+  "click",
+  (e) => {
+    whoPlays(cell5, 5);
+  },
+  { once: true }
+);
 
-cell6.addEventListener("click", (e) => {
-  whoPlays(cell6, 6);
-});
+cell6.addEventListener(
+  "click",
+  (e) => {
+    whoPlays(cell6, 6);
+  },
+  { once: true }
+);
 
-cell7.addEventListener("click", (e) => {
-  whoPlays(cell7, 7);
-});
+cell7.addEventListener(
+  "click",
+  (e) => {
+    whoPlays(cell7, 7);
+  },
+  { once: true }
+);
 
-cell8.addEventListener("click", (e) => {
-  whoPlays(cell8, 8);
-});
+cell8.addEventListener(
+  "click",
+  (e) => {
+    whoPlays(cell8, 8);
+  },
+  { once: true }
+);
 
 restart.addEventListener("click", (e) => {
   playedCells[0] = "";
